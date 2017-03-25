@@ -2,7 +2,7 @@ FROM fedora:25
 LABEL maintainer tgraf@tgraf.ch
 
 RUN \
-	dnf update && \
+	dnf -y update && \
 	dnf -y install curl iproute iputils tcpdump strace ethtool gcc git perf tar dig net-tools bind-utils && \
 	curl -LO ftp://ftp.netperf.org/netperf/netperf-2.7.0.tar.gz && \
 	tar -xzf netperf-2.7.0.tar.gz  && \
