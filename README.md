@@ -1,2 +1,1 @@
-# demo-image
-Docker container image for demos
+# Docker container image for demos
