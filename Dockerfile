@@ -10,7 +10,7 @@ RUN \
 	rm -rf netperf-2.7.0 netperf-2.7.0.tar.gz && \
 	rm -f /usr/share/info/netperf.info && \
 	strip -s /usr/bin/netperf /usr/bin/netserver && \
-	dnf erase gcc && \
+	dnf -y erase gcc && \
 	dnf clean all
 
-CMD ["/bin/bash"]
+CMD ["/usr/bin/netserver", "-D"]
