@@ -3,7 +3,7 @@ LABEL maintainer tgraf@tgraf.ch
 
 RUN \
 	dnf -y update && \
-	dnf -y install curl iproute iputils tcpdump strace ethtool gcc git perf tar dig net-tools bind-utils && \
+	dnf -y install curl iproute iputils tcpdump strace ethtool gcc git perf tar net-tools bind-utils && \
 	curl -LO ftp://ftp.netperf.org/netperf/netperf-2.7.0.tar.gz && \
 	tar -xzf netperf-2.7.0.tar.gz  && \
 	cd netperf-2.7.0 && ./configure --prefix=/usr && make && make install && \
