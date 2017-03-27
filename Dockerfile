@@ -1,16 +1,14 @@
-FROM fedora:25
+FROM alpine:3.3
 LABEL maintainer tgraf@tgraf.ch
 
 RUN \
-	dnf -y update && \
-	dnf -y install curl iproute iputils tcpdump strace ethtool gcc git perf tar net-tools bind-utils && \
+	apk add --update curl build-base bash tcpdump strace bind-tools iproute2 net-tools iputils && \
 	curl -LO ftp://ftp.netperf.org/netperf/netperf-2.7.0.tar.gz && \
 	tar -xzf netperf-2.7.0.tar.gz  && \
 	cd netperf-2.7.0 && ./configure --prefix=/usr && make && make install && \
 	rm -rf netperf-2.7.0 netperf-2.7.0.tar.gz && \
 	rm -f /usr/share/info/netperf.info && \
 	strip -s /usr/bin/netperf /usr/bin/netserver && \
-	dnf -y erase gcc && \
-	dnf clean all
+	apk del build-base && rm -rf /var/cache/apk/*
 
 CMD ["/usr/bin/netserver", "-D"]
